@@ -29,5 +29,7 @@
     "lint:types": "yarn tsc --noEmit -p .",
     "lint:ci": "eslint . --ext .tsx,.ts"
   },
-  "workspaces": ["../typescript/*"]
+  "workspaces": [
+    "../typescript/*"
+  ]
 }
