@@ -3,3 +3,9 @@ typescript/*/*
 !typescript/node_modules
 !typescript/*/*.ts
 !typescript/*/package.json
+
+elixir/*/*
+
+!elixir/*/lib
+!elixir/*/test
+!elixir/*/README.md
