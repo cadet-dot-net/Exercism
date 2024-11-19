@@ -4,8 +4,7 @@ unsigned int sum_of_squares(unsigned int numbers) {
     unsigned int sum = 0;
     
     for (unsigned int i = 1; i <= numbers; i++) {
-        unsigned int square = pow(i, 2);
-        sum += square;
+        sum += i * i;
     }
     return sum;
 }
@@ -16,7 +15,7 @@ unsigned int square_of_sum(unsigned int numbers) {
     for (unsigned int i = 1; i <= numbers; i++) {
         sum += i;
     }
-    return pow(sum, 2);
+    return sum * sum;
 }
 
 unsigned int difference_of_squares(unsigned int number) {
