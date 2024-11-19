@@ -9,3 +9,6 @@ elixir/*/*
 !elixir/*/lib
 !elixir/*/test
 !elixir/*/README.md
+
+.vscode
+.DS_Store
