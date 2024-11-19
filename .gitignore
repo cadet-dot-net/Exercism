@@ -12,3 +12,4 @@ elixir/*/*
 
 .vscode
 .DS_Store
+*/*/.exercism/*
