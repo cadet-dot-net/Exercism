@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "../test-framework/unity.h"
 #include "queen_attack.h"
 
 void setUp(void)
