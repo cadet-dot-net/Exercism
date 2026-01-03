@@ -6,9 +6,9 @@ typescript/*/*
 
 elixir/*/*
 
-!elixir/*/lib
-!elixir/*/test
-!elixir/*/README.md
+!elixir/*/*/lib
+!elixir/*/*/test
+!elixir/*/*/README.md
 
 .vscode
 .DS_Store
