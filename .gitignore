@@ -7,18 +7,30 @@
 ## include the project root gitignore
 !/.gitignore
 
-!typescript/node_modules
+# js/ts
+**/node_modules
+
+/typescript/*
 !typescript/*/*.ts
 !typescript/*/package.json
 
-elixir/*/*/
+# elixir
+.formatter.exs
+.elixir_ls/
+.expert/
+## legacy submissions
+elixir/**/*.md
+elixir/**/mix.*
+elixir/**/_build/
+elixir/**/lib/
+elixir/**/test/
+!elixir/**/README.md
+## exercism sync submissions with index subdirs
+!elixir/**/[0-9]/README.md
+!elixir/**/[0-9]/mix.*
+!elixir/**/[0-9]/lib/
+!elixir/**/[0-9]/test/
 
-!elixir/*/*/lib/
-!elixir/*/*/test/
-!elixir/*/*/README.md
 
-.vscode
-.DS_Store
-*/*/.exercism/*
-
+# elm
 elm/*/elm-stuff
