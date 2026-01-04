@@ -1,4 +1,11 @@
-typescript/*/*
+# global
+.vscode
+.DS_Store
+.exercism/
+.gitignore
+*.code-workspace
+## include the project root gitignore
+!/.gitignore
 
 !typescript/node_modules
 !typescript/*/*.ts
