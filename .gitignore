@@ -18,6 +18,7 @@
 .formatter.exs
 .elixir_ls/
 .expert/
+*.dump
 ## legacy submissions
 elixir/**/*.md
 elixir/**/mix.*
