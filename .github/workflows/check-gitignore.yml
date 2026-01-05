@@ -1,4 +1,4 @@
-name: Check gitignore files on PR commit
+name: Check gitignore is respected in PRs
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-ignored:
+  check-ignored:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
