@@ -28,7 +28,7 @@ jobs:
           echo ""
           echo "Checking against gitignore..."
 
-          IGNORED=$(echo "$FILES" | git check-ignore --stdin || true)
+          IGNORED=$(echo "$FILES" | git check-ignore --stdin --no-index || true)
 
           echo "Ignored files found:"
           echo "$IGNORED"
