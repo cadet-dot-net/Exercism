@@ -26,8 +26,15 @@ jobs:
 
           if [ -n "$IGNORED" ]; then
             echo "❌ PR contains files that go against gitignore:"
-            echo "$IGNORED"
+            echo "$IGNORED" > ignored-files.txt
             exit 1
           fi
 
           echo "✅ No ignored files found"
+
+      - name: Upload ignored files list
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ignored-files-list
+          path: ignored-files.txt
