@@ -30,7 +30,7 @@ jobs:
           if [ -f ignored-files.txt ]; then
             echo "🗑️ Removing ignored files:"
             cat ignored-files.txt
-            cat ignored-files.txt | xargs git rm --cached
+            cat ignored-files.txt | xargs git restore --source=HEAD
 
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
