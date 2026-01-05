@@ -1,4 +1,4 @@
-name: Check gitignore is respected in PRs
+name: Check gitignore files are not committed
 
 on:
   pull_request:

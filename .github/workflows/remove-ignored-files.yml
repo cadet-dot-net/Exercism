@@ -2,7 +2,7 @@ name: Remove ignored files
 
 on:
   workflow_run:
-    workflows: ["Check gitignore is respected in PRs"]
+    workflows: ["Check gitignore files are not committed"]
     types: [completed]
   # enable "Run workflow" button in UI for manual triggering
   workflow_dispatch:
