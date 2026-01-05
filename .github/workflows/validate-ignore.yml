@@ -15,9 +15,6 @@ jobs:
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head.ref }}
-          fetch-depth: 0
 
       - name: Check ignored files
         run: |
