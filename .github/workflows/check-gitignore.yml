@@ -23,8 +23,18 @@ jobs:
           git fetch origin ${{ github.base_ref }}
           FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
 
-          if echo "$FILES" | git check-ignore --stdin; then
-            echo "❌ Error: PR contains ignored files (listed above)"
+          echo "Files in PR:"
+          echo "$FILES"
+          echo ""
+          echo "Checking against gitignore..."
+
+          IGNORED=$(echo "$FILES" | git check-ignore --stdin || true)
+
+          echo "Ignored files found:"
+          echo "$IGNORED"
+
+          if [ -n "$IGNORED" ]; then
+            echo "❌ Error: PR contains ignored files"
             exit 1
           fi
 
