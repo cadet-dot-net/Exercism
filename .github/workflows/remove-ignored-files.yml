@@ -1,29 +1,59 @@
-name: Remove ignored files
+name: Check gitignore files are not committed and remove them
 
 on:
-  workflow_run:
-    workflows: ["Check gitignore files are not committed"]
-    types: [completed]
-  # enable "Run workflow" button in UI for manual triggering
-  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  remove-ignored-files:
+  check-ignored:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'failure' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_branch || github.ref }}
+          fetch-depth: 0
+
+      - name: Check ignored files
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          IGNORED=$(echo "$FILES" | git check-ignore --no-index --stdin || true)
+
+          if [ -n "$IGNORED" ]; then
+            echo "❌ PR contains files that go against gitignore:"
+            echo "$IGNORED" > ignored-files.txt
+            exit 1
+          fi
+
+          echo "✅ No ignored files found"
+
+      - name: Upload ignored files list
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ignored-files-list
+          path: ignored-files.txt
+
+  remove-ignored-files:
+    runs-on: ubuntu-latest
+    needs: check-ignored
+    if: failure()
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download ignored files list
         uses: actions/download-artifact@v4
         with:
           name: ignored-files
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Remove ignored files
         run: |
